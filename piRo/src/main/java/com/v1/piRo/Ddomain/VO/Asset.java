@@ -11,6 +11,8 @@ public class Asset {
     private String tickerSymbol;
     private BigDecimal quantity;
     private Money purchasePrice;
+    private Money currentPrice;
+
 
 
 }

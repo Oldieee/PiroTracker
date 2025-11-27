@@ -48,10 +48,10 @@ public class PortfolioService {
          BigDecimal newValue=quantity.multiply(finalPrice);
 
          BigDecimal totalValue = oldValue.add(newValue);
-         BigDecimal newAvaragePrice=totalValue.divide(newTotalQuantity,2, RoundingMode.HALF_UP);
+         BigDecimal newAveragePrice=totalValue.divide(newTotalQuantity,2, RoundingMode.HALF_UP);
 
          existingAsset.setQuantity(newTotalQuantity);
-         existingAsset.setPurchasePrice(new Money(newAvaragePrice,currency));
+         existingAsset.setPurchasePrice(new Money(newAveragePrice,currency));
          System.out.println("Activ existent actualizat: "+ticker+"Cantitate noua:"+newTotalQuantity);
 
      }else {
@@ -61,7 +61,7 @@ public class PortfolioService {
          newAsset.setQuantity(quantity);
          newAsset.setPurchasePrice(purchasePrice);
          portfolio.addAsset(newAsset);
-         System.out.println("Activ nou creat: "+ticker);
+         System.out.println("Activ nou creat: "+ticker );
      }
      portfolioRepository.save(portfolio);
  }
