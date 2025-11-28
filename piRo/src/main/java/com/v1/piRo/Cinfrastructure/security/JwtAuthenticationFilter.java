@@ -4,10 +4,8 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,10 +16,10 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 @Component
-public class JwtAuthentificationFilter extends OncePerRequestFilter {
-    private final JwService jwService;
+public class JwtAuthenticationFilter extends OncePerRequestFilter {
+    private final JwtService jwService;
     private  final UserDetailsService userDetailsService;
-    public JwtAuthentificationFilter(JwService jwService, UserDetailsService userDetailsService){
+    public JwtAuthenticationFilter(JwtService jwService, UserDetailsService userDetailsService){
         this.jwService=jwService;
         this.userDetailsService=userDetailsService;
     }
