@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -15,10 +16,12 @@ public class UserDbo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true, nullable = false)
-    private String hashedPassword;
+    private String username;
+   @Column(nullable = false)
+    private String password;
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_follows", joinColumns = @JoinColumn(name = "follower_id"))
-    @Column(name = "following_id")
-    private Set<Long> followingIds;
+    @CollectionTable(name = "user_roles",joinColumns = @JoinColumn(name = "user_ud"))
+    @Column(name = "role")
+    private Set<String>roles=new HashSet<>();
 
 }
