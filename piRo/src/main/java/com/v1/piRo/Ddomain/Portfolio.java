@@ -1,45 +1,35 @@
 package com.v1.piRo.Ddomain;
 
-import com.v1.piRo.Ddomain.VO.Money;
-import com.v1.piRo.Ddomain.VO.Asset;
 import lombok.Getter;
-import lombok.Setter;
+import java.util.ArrayList;
+import java.util.List;
 
-import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 @Getter
-@Setter
 public class Portfolio {
-    private Long id;
-    private Long userId;
-    private Set<Asset> assets = new HashSet<>();
 
-    public void addAsset(Asset asset) {
-        this.assets.add(asset);
+  private final Long id;
+  private final Long userId;
+  private String name;
+  private List<Transaction> transactions = new ArrayList<>();
+
+
+  public Portfolio(Long userId, String name) {
+    this.id = null;
+    this.userId = userId;
+    this.name = name;
+  }
+
+
+  public Portfolio(Long id, Long userId, String name, List<Transaction> transactions) {
+    this.id = id;
+    this.userId = userId;
+    this.name = name;
+    if (transactions != null) {
+      this.transactions = transactions;
     }
+  }
 
-    public void removeAsset(Asset asset) {
-        this.assets.remove(asset);
-    }
-
-    public BigDecimal getTotalValue(){
-        BigDecimal total=BigDecimal.ZERO;
-        if(assets!=null){
-            for(Asset asset:assets){
-                Money priceToUse=(asset.getCurrentPrice()!=null)
-                                ?asset.getCurrentPrice()
-                                :asset.getPurchasePrice();
-                if(priceToUse!=null){
-                    BigDecimal assetValue=asset.getQuantity().multiply(priceToUse.getAmount());
-                    total=total.add(assetValue);
-                }
-            }
-        }
-        return  total;
-    }
-
-
-
+  public void addTransaction(Transaction transaction) {
+    this.transactions.add(transaction);
+  }
 }
